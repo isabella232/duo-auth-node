@@ -21,20 +21,26 @@ A Duo integration for ForgeRock's [Identity Platform][forgerock_platform] 6.0 an
 3. Device Management (if applicable) 
 
 **Installation**
+
 Copy the .jar file from the ../target directory into the ../web-container/webapps/openam/WEB-INF/lib directory where AM is deployed.  Restart the web container to pick up the new node.  The node will then appear in the authentication trees components palette.
 
 
 **Duo Configuration**
 1. Create a Duo Account at https://signup.duo.com/.
 2. Log in to the Duo Admin console and click on the 'Applications' tab.
+![alt text](https://raw.githubusercontent.com/ForgeRock/duo-auth-node/master/images/Duo1.png "Duo Configuration 1")
 3. Click 'Protect an Application'.
 4. In the search bar type in 'WebSDK'.
+![alt text](https://raw.githubusercontent.com/ForgeRock/duo-auth-node/master/images/Duo2.png "Duo Configuration 2")
 5. Note down the Integration Key, Secret Key and API hostname. These will be used in the node configuration.
+![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/Duo3.png?raw=true "Duo Configuration 3")
 
 **ForgeRock Configuration**
 1. Log into your ForgeRock AM console.
 2. Create a new Authentication Tree.
+![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/ForgeRock1.png?raw=true "ForgeRock Configuration 1")
 3. Setup the following configuration for the tree that was just created.
+![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/ForgeRock2.png?raw=true "ForgeRock Configuration 2")
 4. Paste in the Integration Key, Secret Key and API hostname for the corresponding Duo Web SDK Application.
 5. Generate an application key. It must be at least 40 characters long random string. You can generate a random string in Python with:
 ```python
@@ -48,5 +54,7 @@ print hashlib.sha1(os.urandom(32)).hexdigest()
 **Usage**
 1. Log into the Tree that was created in the steps above by going to /openam/XUI/#login&service={{Tree_Name}}.
 2. Log in the your ForgeRock username and password.
+![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/Access1.png?raw=true "Access 1")
 3. Follow the prompts to register a new device or if you've already registered, use Duo to log in.
+![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/Access2.png?raw=true "Access 2")
 

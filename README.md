@@ -30,7 +30,7 @@ Copy the .jar file from the ../target directory into the ../web-container/webapp
 2. Log in to the Duo Admin console and click on the 'Applications' tab.
 ![alt text](https://raw.githubusercontent.com/ForgeRock/duo-auth-node/master/images/Duo1.png "Duo Configuration 1")
 3. Click 'Protect an Application'.
-4. In the search bar type in 'WebSDK'.
+4. In the search bar type in 'Web SDK'.
 ![alt text](https://raw.githubusercontent.com/ForgeRock/duo-auth-node/master/images/Duo2.png "Duo Configuration 2")
 5. Note down the Integration Key, Secret Key and API hostname. These will be used in the node configuration.
 ![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/Duo3.png?raw=true "Duo Configuration 3")

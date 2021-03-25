@@ -24,7 +24,6 @@ import com.duosecurity.duoweb.DuoWebException;
 import com.google.inject.assistedinject.Assisted;
 import com.sun.identity.authentication.callbacks.HiddenValueCallback;
 import com.sun.identity.authentication.callbacks.ScriptTextOutputCallback;
-import com.sun.identity.shared.debug.Debug;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -34,13 +33,14 @@ import javax.security.auth.callback.Callback;
 import org.forgerock.openam.annotations.sm.Attribute;
 import org.forgerock.openam.auth.node.api.*;
 import org.forgerock.openam.core.CoreWrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Node.Metadata(outcomeProvider = AbstractDecisionNode.OutcomeProvider.class,
-        configClass = DuoNode.Config.class)
+        configClass = DuoNode.Config.class, tags = {"mfa", "multi-factor authentication"})
 public class DuoNode extends AbstractDecisionNode {
 
-    private final static String DEBUG_FILE = "DuoNode";
-    private Debug debug = Debug.getInstance(DEBUG_FILE);
+    private final Logger logger = LoggerFactory.getLogger("amAuth");
     private String iKey;
     private String sKey;
     private String apiHostName;
@@ -92,7 +92,7 @@ public class DuoNode extends AbstractDecisionNode {
         String username = context.sharedState.get(SharedStateConstants.USERNAME).asString().toLowerCase();
 
         if (context.hasCallbacks()) {
-            debug.message("Duo Callbacks Received");
+            logger.debug("Duo Callbacks Received");
             String signatureResponse = context.getCallback(HiddenValueCallback.class).get().getValue();
             try {
                 return goTo(username.equals(DuoWeb.verifyResponse(iKey, sKey, aKey, signatureResponse))).build();
@@ -105,7 +105,7 @@ public class DuoNode extends AbstractDecisionNode {
     }
 
     private Action buildCallbacks(String username) {
-        debug.message("Sending Duo Callbacks to client");
+        logger.debug("Sending Duo Callbacks to client");
         return send(new ArrayList<Callback>() {{
             add(new ScriptTextOutputCallback(String.format(SETUP_DOM_SCRIPT, duoJavascriptUrl) + STYLE_SCRIPT +
                     String.format(INIT_SCRIPT, apiHostName, DuoWeb.signRequest(iKey, sKey, aKey, username))));

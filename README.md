@@ -15,14 +15,16 @@
 -->
 # Duo Node
 
-A Duo integration for ForgeRock's [Identity Platform][forgerock_platform] 6.0 and above. This integration handles:
+A Duo integration for ForgeRock's Identity Platform 6.0 and above. This integration handles:
 1. Registration of the users device
 2. Second factor authentication
 3. Device Management (if applicable) 
 
 **Installation**
 
-Copy the .jar file from the ../target directory into the ../web-container/webapps/openam/WEB-INF/lib directory where AM is deployed.  Restart the web container to pick up the new node.  The node will then appear in the authentication trees components palette.
+1. Download the latest version of the Duo integration from [here](https://github.com/ForgeRock/duo-auth-node/releases/latest).
+2. Copy the .jar file into the ../web-container/webapps/openam/WEB-INF/lib directory where AM is deployed.
+3. Restart the web container to pick up the new node.  The node will then appear in the authentication trees components palette.
 
 
 **Duo Configuration**

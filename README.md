@@ -34,7 +34,7 @@ A Duo integration for ForgeRock's Identity Platform 6.0 and above. This integrat
 3. Click 'Protect an Application'.
 4. In the search bar type in 'Web SDK'.
 ![alt text](https://raw.githubusercontent.com/ForgeRock/duo-auth-node/master/images/Duo2.png "Duo Configuration 2")
-5. Note down the Integration Key, Secret Key and API hostname. These will be used in the node configuration.
+5. Note down the Integration Key, Secret Key and API hostname. Depending on the Duo tenant, these values can also be called Client ID, Client Secret, and API hostname respectively. These will be used in the node configuration.
 ![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/Duo3.png?raw=true "Duo Configuration 3")
 
 **ForgeRock Configuration**
@@ -43,7 +43,7 @@ A Duo integration for ForgeRock's Identity Platform 6.0 and above. This integrat
 ![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/ForgeRock1.png?raw=true "ForgeRock Configuration 1")
 3. Setup the following configuration for the tree that was just created.
 ![alt text](https://github.com/ForgeRock/duo-auth-node/blob/master/images/ForgeRock2.png?raw=true "ForgeRock Configuration 2")
-4. Paste in the Integration Key, Secret Key and API hostname for the corresponding Duo Web SDK Application.
+4. Paste in the Integration Key (Client ID), Secret Key (Client Secret) and API hostname for the corresponding Duo Web SDK Application.
 5. Generate an application key. It must be at least 40 characters long random string. You can generate a random string in Python with:
 ```python
 import os, hashlib
